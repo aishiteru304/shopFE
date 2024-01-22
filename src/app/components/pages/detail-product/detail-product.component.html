@@ -1,0 +1,42 @@
+<div class="wrapDetailProduct">
+    <div class="container">
+        <div *ngIf="product" class="detailProduct">
+            <div class="wrapImage col-md-6 col-12">
+                <img src="{{product.image}}">
+            </div>
+
+            <div class="wrapInformationProduct col-md-6 col-12">
+                <span class="nameProduct">{{product.name}}</span>
+                <span class="categoryProduct">{{product.category}}</span>
+                <span class="priceProduct">$ {{product.price}}</span>
+                <span class="descProduct">Description:</span>
+                <span>{{product.description}}</span>
+
+                <div *ngIf="!user.email" class="mt-4"><button class="btn addCart"><a routerLink="/login"
+                            style="color: black;">Add
+                            to cart</a></button>
+                </div>
+                <div *ngIf="user.email" class="mt-4"><button class="btn addCart"
+                        (click)="handleAddToCart(product.id)">Add to
+                        cart</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <span class="relatedTitle">Related Products</span>
+            <div class="wrapProducts">
+                <ng-container *ngIf="products && products.length > 0; else loading2">
+                    <div *ngFor="let product of products">
+                        <app-card-product [product]="product"></app-card-product>
+                    </div>
+                </ng-container>
+
+                <ng-template #loading2>
+                    <div>Loading...</div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

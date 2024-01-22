@@ -1,0 +1,59 @@
+.wrapUser {
+    padding-top: 2rem;
+    overflow: hidden;
+    min-height: calc(100vh - 10rem);
+}
+
+.wrapTable {
+    // overflow-x: scroll;
+    position: relative;
+}
+
+@media (width <=768px) {
+    .wrapTable {
+        overflow-x: scroll;
+    }
+}
+
+.userTable {
+    min-width: 40rem;
+    max-width: 50rem;
+    width: 100%;
+    margin: 2rem auto;
+}
+
+.userTable table {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f0f0f0;
+}
+
+th {
+    padding: 10px;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.show {
+    display: block;
+}
+
+.createInput {
+    width: 100%;
+    border-radius: 0.25rem;
+    outline: none;
+    border: none;
+    background-color: rgb(241 245 249);
+    padding: 0.25rem 0.5rem;
+    height: 2rem;
+}

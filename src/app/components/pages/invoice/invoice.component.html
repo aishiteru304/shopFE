@@ -1,0 +1,43 @@
+<div class="wrapInvoice container">
+
+    <div class="wrapTable">
+        <div class="invoiceTable">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">Ordinal Numbers</th>
+                        <th style="width: 10%;">UserId</th>
+                        <th style="width: 45%;">Product</th>
+                        <th style="width: 15%;">Phone</th>
+                        <th style="width: 20%;">Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="invoices && invoices.length > 0; else loading">
+                        <tr *ngFor="let invoice of invoices; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ invoice.userId }}</td>
+                            <td>
+                                <div class="listProducts" *ngFor="let product of invoice.products">
+                                    <span>{{product.name}}</span>
+                                    <img src="{{product.image}}">
+                                    <span>x {{product.amount}}</span>
+                                </div>
+
+                            </td>
+                            <td>{{invoice.phone}}</td>
+                            <td>{{invoice.address}}</td>
+                        </tr>
+                    </ng-container>
+
+                    <ng-template #loading>
+                        <tr>
+                            <td colspan="5">Loading...</td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

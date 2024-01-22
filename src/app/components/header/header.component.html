@@ -1,0 +1,30 @@
+<div class="wrapHeader">
+    <div class="container h-100">
+        <div class="d-flex justify-content-between h-100">
+            <a routerLink="">
+                <div class="wrapLogo">
+                    <img alt="logo" src="/assets/logo.png" class="h-100">
+                </div>
+            </a>
+            <div class="wrapMenu">
+                <a *ngIf="!user.email" routerLink="/login" class="fw-bold text-dark">Login</a>
+                <a *ngIf="!user.email" routerLink="/register" class="fw-bold text-dark">Register</a>
+                <h6 *ngIf="user.email" class="fw-bold text-dark m-0 user" style="cursor: pointer;">
+                    {{user.email&&user.email.split("@")[0]}}
+                    <div class="userMenu">
+                        <ul class="m-0 p-0">
+                            <li *ngIf="user.isAdmin"><a routerLink="/admin/users">Users</a></li>
+                            <li *ngIf="user.isAdmin"><a routerLink="/admin/products">Products</a></li>
+                            <li *ngIf="user.isAdmin"><a routerLink="/admin/invoices">Invoices</a></li>
+                            <li (click)="handleLogout()">Logout</li>
+                        </ul>
+                    </div>
+                </h6>
+                <a *ngIf="user.email" routerLink="/carts" class="fw-bold text-dark position-relative">
+                    <fa-icon [icon]="iconCart"></fa-icon>
+                    <div class="numberItemInCart">{{lengthCart}}</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

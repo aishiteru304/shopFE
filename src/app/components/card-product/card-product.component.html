@@ -1,0 +1,15 @@
+<div class="cardProduct">
+    <a routerLink="/product/{{product.id}}">
+        <img src="{{product.image}}">
+        <div class="d-flex justify-content-between mt-4">
+            <span class="nameProduct">{{product.name}}</span>
+            <span class="priceProduct">$ {{product.price}}</span>
+        </div>
+    </a>
+    <div *ngIf="!user.email" class="mt-4"><button class="btn addCart"><a routerLink="/login" style="color: black;">Add
+                to cart</a></button>
+    </div>
+    <div *ngIf="user.email" class="mt-4"><button class="btn addCart" (click)="handleAddToCart(product.id)">Add to
+            cart</button>
+    </div>
+</div>

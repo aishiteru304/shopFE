@@ -1,0 +1,55 @@
+<div class="wrapCarts">
+    <div class="container">
+        <div class="cartsContent">
+            <span class="titleCart">Your cart items</span>
+            <div *ngIf="items.length">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div *ngFor="let item of items;let i = index">
+                            <div class="cartItem">
+                                <img src="{{item.image}}">
+                                <div class="wrapInforItem">
+                                    <span class="nameItem">{{item.name}}</span>
+                                    <span class="categoryItem">{{item.category}}</span>
+                                    <span class="priceItem">$ {{item.price}}</span>
+                                    <div class="wrapBtnItem">
+                                        <button class="btnItem" (click)="handlePlus(i)">+</button>
+                                        <span>{{item.amount}}</span>
+                                        <button class="btnItem" (click)="handleAbstracts(i)">-</button>
+                                    </div>
+                                </div>
+                                <button class="btnTrash"><fa-icon [icon]="trashIcon"></fa-icon></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                        <div class="wrapInvoice">
+                            <span class="invoiceSummary">Summary</span>
+                            <span class="invoicePrice">Total Price: $ {{totalPrice}}</span>
+                            <form [formGroup]="invoiceForm" class="block" (ngSubmit)="handleBuyItems()">
+                                <div class="d-flex flex-column px-4">
+                                    <label for="phone"> Phone: </label>
+                                    <input id="phone" type="text" formControlName="phone" class="cartInput">
+                                </div>
+                                <div class="mt-2 d-flex flex-column px-4">
+                                    <label for="address">Address: </label>
+                                    <input id="address" type="text" formControlName="address" class="cartInput">
+                                </div>
+                                <div class="mt-4 px-4">
+                                    <button type="submit" [disabled]="!invoiceForm.valid" class="btn cartBtn">
+                                        Payment
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="items.length === 0" class="d-flex justify-content-center">
+                <img src="/assets/empty.gif" class="emptyCart">
+            </div>
+        </div>
+    </div>
+</div>

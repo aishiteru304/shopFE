@@ -1,0 +1,83 @@
+<div class="wrapHome">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <div class="homeTitle">
+                    <p class="m-0 fw-bolder">Bike Delivery</p>
+                    <img src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png" alt='' />
+                </div>
+                <h2 class="homeMainTitle">
+                    The Fasted Delivery in
+                    <span>Your Home</span>
+                </h2>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.
+                </p>
+                <button class="orderBtn btn">
+                    <a [routerLink]="user.email ? '/carts' : '/login'">Order Now</a>
+                </button>
+            </div>
+            <div class="col-md-6 col-12">
+                <p class="newproducts fw-bolder">New Products</p>
+                <ng-container *ngIf="newproducts && newproducts.length > 0; else loading">
+                    <swiper-container pagination="true">
+                        <swiper-slide *ngFor="let product of newproducts">
+                            <a routerLink="/product/{{product.id}}"><img class="newproduct"
+                                    src="{{product?.image}}"></a>
+                        </swiper-slide>
+                    </swiper-container>
+
+                </ng-container>
+
+                <ng-template #loading>
+                    <div>Loading...</div>
+                </ng-template>
+
+            </div>
+        </div>
+
+        <div>
+            <div class="row">
+                <h2 class="title col-md-6 col-12">Your Products</h2>
+                <div class="col-md-6 col-12 input">
+                    <input [(ngModel)]="searchString" placeholder="Search for products here"
+                        (keyup.enter)="handleSearch()">
+                </div>
+            </div>
+
+            <div class="filterProduct">
+                <ng-container *ngIf="categories && categories.length > 0; else loading">
+                    <div *ngFor="let category of categories">
+                        <div [ngClass]="{active : category === activeCategory}">
+                            <div class="wrapKnife" (click)="setActiveCategory(category)">
+                                <fa-icon [icon]="iconKnife"></fa-icon>
+                            </div>
+                            <div><span>{{category}}</span></div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ng-template #loading>
+                    <div>Loading...</div>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="wrapProducts">
+                <ng-container *ngIf="products && products.length > 0; else loading2">
+                    <div *ngFor="let product of products">
+                        <app-card-product [product]="product"></app-card-product>
+                    </div>
+                </ng-container>
+
+                <ng-template #loading2>
+                    <div>Loading...</div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

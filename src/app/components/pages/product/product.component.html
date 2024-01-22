@@ -1,0 +1,96 @@
+<div class="wrapProduct container">
+
+    <button (click)="openModal()" type="button" class="btn btn-primary mt-4" data-bs-toggle="modal">
+        Create Product
+    </button>
+
+
+    <!-- Modal -->
+    <div class="modal fade" [ngClass]="{show:isShowModal}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Create Product</h1>
+                    <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="createForm" class="block" (ngSubmit)="handleCreate()">
+                        <div>
+                            <label for="file"> Image: </label>
+                            <input id="file" type="file" formControlName="file" class="createInput file"
+                                accept="image/*" (change)="onFileSelected($event)">
+                        </div>
+                        <div class="mt-2">
+                            <label for="name">Name: </label>
+                            <div>
+                                <input id="name" type="text" formControlName="name" class="createInput">
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <label for="category">Category: </label>
+                            <div>
+                                <input id="category" type="text" formControlName="category" class="createInput">
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <label for="price">Price: </label>
+                            <div>
+                                <input id="price" type="text" formControlName="price" class="createInput">
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <label for="description">Description: </label>
+                            <div>
+                                <input id="description" type="text" formControlName="description" class="createInput">
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-success createBtn" [disabled]="!createForm.valid">
+                                Create
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapTable">
+        <div class="userTable">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Ordinal Numbers</th>
+                        <th style="width: 20%;">Name</th>
+                        <th style="width: 40%;">Image</th>
+                        <th style="width: 20%;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="products && products.length > 0; else loading">
+                        <tr *ngFor="let product of products; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ product.name }}</td>
+                            <td><img src="{{product.image}}" style="height: 4rem;"></td>
+                            <td>
+                                <button (click)="handleDeleteProduct(product.id)"
+                                    style="color: red; border: none; background-color: white;">
+                                    <fa-icon [icon]="trashIcon"></fa-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-container>
+
+                    <ng-template #loading>
+                        <tr>
+                            <td colspan="3">Loading...</td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

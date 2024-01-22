@@ -1,0 +1,54 @@
+.wrapInvoice {
+    padding-top: 2rem;
+    overflow: hidden;
+    min-height: calc(100vh - 10rem);
+}
+
+.wrapTable {
+    // overflow-x: scroll;
+    position: relative;
+}
+
+@media (width <=768px) {
+    .wrapTable {
+        overflow-x: scroll;
+    }
+}
+
+
+.invoiceTable {
+    width: 50rem;
+    margin: 2rem auto;
+}
+
+.invoiceTable table {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f0f0f0;
+}
+
+th {
+    padding: 10px;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.listProducts {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.listProducts img {
+    width: 5rem;
+}
